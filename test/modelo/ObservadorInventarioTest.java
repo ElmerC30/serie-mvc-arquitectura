@@ -20,7 +20,7 @@ class ObservadorInventarioTest {
     @Test
     @DisplayName("Ej4: agregar y vender notifican a todos los observadores registrados")
     void cambiosExitososNotifican() throws Exception {
-        Inventario inv = new Inventario();
+        Inventario inv = new Inventario(new persistencia.ProductoDAOMemoria());
         AtomicInteger a = new AtomicInteger();
         AtomicInteger b = new AtomicInteger();
         inv.agregarObservador(a::incrementAndGet);
@@ -36,7 +36,7 @@ class ObservadorInventarioTest {
     @Test
     @DisplayName("Ej4: las operaciones rechazadas no notifican")
     void operacionesRechazadasNoNotifican() throws Exception {
-        Inventario inv = new Inventario();
+        Inventario inv = new Inventario(new persistencia.ProductoDAOMemoria());
         inv.agregar(new Producto("Teclado", 5, 350.0));
         AtomicInteger avisos = new AtomicInteger();
         inv.agregarObservador(avisos::incrementAndGet);
@@ -51,7 +51,7 @@ class ObservadorInventarioTest {
     @Test
     @DisplayName("Ej4: el observador ve el estado ya actualizado y puede darse de baja")
     void observadorVeEstadoNuevoYSePuedeQuitar() throws Exception {
-        Inventario inv = new Inventario();
+        Inventario inv = new Inventario(new persistencia.ProductoDAOMemoria());
         inv.agregar(new Producto("Mouse", 10, 199.99));
         List<Integer> visto = new ArrayList<>();
         ObservadorInventario o = () -> visto.add(inv.getProductos().get(0).getCantidad());
@@ -71,7 +71,8 @@ class ObservadorInventarioTest {
         try (Stream<Path> archivos = Files.list(modelo)) {
             for (Path f : (Iterable<Path>) archivos::iterator) {
                 String codigo = Files.readString(f);
-                for (String prohibido : new String[] {"import vista", "import controlador", "Vista",
+                for (String prohibido : new String[] {"import vista", "import controlador", "import persistencia",
+                                                       "java.sql", "Vista",
                                                        "Controlador", "javax.swing", "System.out", "Scanner"}) {
                     assertFalse(codigo.contains(prohibido), f.getFileName() + " contiene " + prohibido);
                 }

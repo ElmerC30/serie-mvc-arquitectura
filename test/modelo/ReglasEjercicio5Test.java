@@ -13,7 +13,7 @@ class ReglasEjercicio5Test {
     @Test
     @DisplayName("Ej5 req.2: no se aceptan mas de 50000 unidades; 50000 exactas si")
     void maximoDeUnidadesEnAlmacen() throws Exception {
-        Inventario inv = new Inventario();
+        Inventario inv = new Inventario(new persistencia.ProductoDAOMemoria());
         assertThrows(DatosInvalidosException.class,
                      () -> inv.agregar(new Producto("Tornillo", 50001, 0.5)));
         inv.agregar(new Producto("Tornillo", 50000, 0.5));
@@ -31,7 +31,7 @@ class ReglasEjercicio5Test {
     @Test
     @DisplayName("Ej5 req.5: un producto se vuelve critico al venderse por debajo del umbral")
     void ventaLoVuelveCritico() throws Exception {
-        Inventario inv = new Inventario();
+        Inventario inv = new Inventario(new persistencia.ProductoDAOMemoria());
         inv.agregar(new Producto("Mouse", 12, 199.99));
         inv.agregar(new Producto("Teclado", 50, 350.0));
         assertTrue(inv.getCriticos().isEmpty());

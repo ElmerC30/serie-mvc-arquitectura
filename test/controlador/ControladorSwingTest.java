@@ -37,7 +37,7 @@ class ControladorSwingTest {
     @BeforeEach
     void setUp() throws Exception {
         Assumptions.assumeFalse(java.awt.GraphicsEnvironment.isHeadless(), "Requiere entorno grafico");
-        inventario = new Inventario();
+        inventario = new Inventario(new persistencia.ProductoDAOMemoria());
         SwingUtilities.invokeAndWait(() -> {
             vista = new VistaSwing();
             controlador = new ControladorSwing(inventario, vista);

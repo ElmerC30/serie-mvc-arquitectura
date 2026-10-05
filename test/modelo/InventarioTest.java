@@ -16,7 +16,7 @@ class InventarioTest {
 
     @BeforeEach
     void setUp() {
-        inv = new Inventario();
+        inv = new Inventario(new persistencia.ProductoDAOMemoria());
     }
 
     @Test

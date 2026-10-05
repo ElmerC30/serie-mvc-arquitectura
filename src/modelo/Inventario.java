@@ -9,13 +9,21 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Estado del inventario y reglas de negocio.
  * No imprime ni lee nada: rechaza las operaciones invalidas con excepciones propias
  * y avisa a sus observadores cuando su estado cambia.
+ * No sabe donde se guardan los datos: los pide y los entrega a un ProductoDAO (Ejercicio 6).
  */
 public class Inventario {
     /** Regla 2 del Ejercicio 5: capacidad maxima de almacen por producto. */
     public static final int MAX_UNIDADES = 50000;
 
-    private final List<Producto> productos = new ArrayList<>();
+    private final ProductoDAO dao;
     private final List<ObservadorInventario> observadores = new CopyOnWriteArrayList<>();
+
+    public Inventario(ProductoDAO dao) {
+        if (dao == null) {
+            throw new IllegalArgumentException("El inventario necesita un ProductoDAO");
+        }
+        this.dao = dao;
+    }
 
     public void agregarObservador(ObservadorInventario o) {
         observadores.add(o);
@@ -49,7 +57,7 @@ public class Inventario {
             if (p.getPrecio() <= 0) {
                 throw new DatosInvalidosException("El precio debe ser mayor que cero");
             }
-            productos.add(p);
+            dao.insertar(p);
         }
         notificar();
     }
@@ -67,6 +75,7 @@ public class Inventario {
                 throw new StockInsuficienteException(nombre, p.getCantidad(), cantidad);
             }
             p.setCantidad(p.getCantidad() - cantidad);
+            dao.actualizar(p);
             quedan = p.getCantidad();
         }
         notificar();
@@ -75,7 +84,7 @@ public class Inventario {
 
     /** Devuelve el primer producto con ese nombre o lanza excepcion si no existe. */
     public synchronized Producto buscar(String nombre) throws ProductoNoEncontradoException {
-        for (Producto p : productos) {
+        for (Producto p : dao.listar()) {
             if (p.getNombre().equals(nombre)) {
                 return p;
             }
@@ -84,7 +93,7 @@ public class Inventario {
     }
 
     public synchronized boolean existe(String nombre) {
-        for (Producto p : productos) {
+        for (Producto p : dao.listar()) {
             if (p.getNombre().equals(nombre)) {
                 return true;
             }
@@ -94,13 +103,13 @@ public class Inventario {
 
     /** Copia de solo lectura de los productos, en orden de alta (segura entre hilos). */
     public synchronized List<Producto> getProductos() {
-        return Collections.unmodifiableList(new ArrayList<>(productos));
+        return Collections.unmodifiableList(new ArrayList<>(dao.listar()));
     }
 
     /** Productos con stock critico (Ejercicio 5, requisito 5). */
     public synchronized List<Producto> getCriticos() {
         List<Producto> criticos = new ArrayList<>();
-        for (Producto p : productos) {
+        for (Producto p : dao.listar()) {
             if (p.esCritico()) {
                 criticos.add(p);
             }
@@ -111,7 +120,7 @@ public class Inventario {
     /** Suma de cantidad x precio de todos los productos. */
     public synchronized double valorTotal() {
         double total = 0;
-        for (Producto p : productos) {
+        for (Producto p : dao.listar()) {
             total += p.getCantidad() * p.getPrecio();
         }
         return total;

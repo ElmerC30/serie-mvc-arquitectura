@@ -40,7 +40,7 @@ public class Evidencias {
     static void ej5(File carpeta) throws Exception {
         SwingUtilities.invokeAndWait(() -> {
             try {
-                Inventario inventario = new Inventario();
+                Inventario inventario = new Inventario(new persistencia.ProductoDAOMemoria());
                 VistaSwing vista = new VistaSwing("Inventario - criticos en rojo");
                 new ControladorSwing(inventario, vista);
                 agregar(vista, "Teclado", "40", "350");
@@ -61,7 +61,7 @@ public class Evidencias {
     static void ej3(File carpeta) throws Exception {
         SwingUtilities.invokeAndWait(() -> {
             try {
-                Inventario inventario = new Inventario();
+                Inventario inventario = new Inventario(new persistencia.ProductoDAOMemoria());
                 VistaSwing vista = new VistaSwing();
                 new ControladorSwing(inventario, vista);
                 agregar(vista, "Teclado", "5", "350");
@@ -84,7 +84,7 @@ public class Evidencias {
      * Se vende desde la ventana B y se agrega desde la consola; se captura el estado de ambas ventanas.
      */
     static void dosVistas(File carpeta) throws Exception {
-        Inventario inventario = new Inventario();
+        Inventario inventario = new Inventario(new persistencia.ProductoDAOMemoria());
         VistaSwing[] v = new VistaSwing[2];
         SwingUtilities.invokeAndWait(() -> {
             v[0] = new VistaSwing("Ventana A");

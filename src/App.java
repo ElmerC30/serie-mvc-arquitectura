@@ -6,6 +6,9 @@ import controlador.ControladorConsola;
 import controlador.ControladorInventario;
 import controlador.ControladorSwing;
 import modelo.Inventario;
+import modelo.ProductoDAO;
+import persistencia.ProductoDAOArchivo;
+import persistencia.ProductoDAOMemoria;
 import vista.VistaCSV;
 import vista.VistaConsola;
 import vista.VistaSwing;
@@ -18,10 +21,15 @@ import vista.VistaSwing;
  *   java App --csv archivo    consola y, al salir, exporta el inventario con la vista CSV
  *   java App --dual           consola y ventana Swing al mismo tiempo sobre el mismo modelo
  *   java App --dos-ventanas   dos ventanas Swing al mismo tiempo sobre el mismo modelo
+ *
+ * Ejercicio 6: para cambiar de almacenamiento se modifica UNA sola linea, la marcada como DAO.
+ *   new ProductoDAOMemoria()                            datos en memoria
+ *   new ProductoDAOArchivo(Paths.get("inventario.csv"))  datos persistidos en archivo
  */
 public class App {
     public static void main(String[] args) {
-        Inventario inventario = new Inventario();
+        ProductoDAO dao = new ProductoDAOMemoria(); // DAO
+        Inventario inventario = new Inventario(dao);
         String modo = args.length > 0 ? args[0] : "";
 
         if (modo.equals("--gui")) {
