@@ -1,0 +1,16 @@
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: Teclado            5  $350.00
+Mouse              6  $199.99
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: Nombre: Cantidad: Precio: 
+[Aviso] El inventario cambio:
+Teclado            5  $350.00
+Mouse              6  $199.99
+Monitor            2  $3500.00
+Valor del inventario: $9949.94
+Agregado.
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: 

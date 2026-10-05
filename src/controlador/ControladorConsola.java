@@ -15,6 +15,18 @@ public class ControladorConsola {
         this.vista = vista;
     }
 
+    /**
+     * Modo de dos vistas simultaneas (Ejercicio 4): cada vez que el modelo cambia,
+     * desde esta consola o desde otra vista, la consola vuelve a mostrar el inventario.
+     */
+    public void activarAvisos() {
+        casos.suscribir(() -> {
+            vista.mostrarAvisoCambio();
+            casos.listar();
+            casos.valorTotal();
+        });
+    }
+
     /** Ciclo principal del menu. */
     public void iniciar() {
         int op;

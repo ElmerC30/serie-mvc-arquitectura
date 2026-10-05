@@ -41,7 +41,62 @@ public class Evidencias {
                 throw new RuntimeException(e);
             }
         });
+        dosVistas(carpeta);
         System.exit(0);
+    }
+
+    /**
+     * Ejercicio 4: dos ventanas Swing y una consola sobre el mismo Inventario.
+     * Se vende desde la ventana B y se agrega desde la consola; se captura el estado de ambas ventanas.
+     */
+    static void dosVistas(File carpeta) throws Exception {
+        Inventario inventario = new Inventario();
+        VistaSwing[] v = new VistaSwing[2];
+        SwingUtilities.invokeAndWait(() -> {
+            v[0] = new VistaSwing("Ventana A");
+            v[1] = new VistaSwing("Ventana B");
+            new ControladorSwing(inventario, v[0]);
+            new ControladorSwing(inventario, v[1]);
+            agregar(v[0], "Teclado", "5", "350");
+            agregar(v[0], "Mouse", "10", "199.99");
+        });
+        SwingUtilities.invokeAndWait(() -> {
+            try {
+                capturar(v[0], new File(carpeta, "ej4_1_A_tras_agregar_en_A.png"));
+                capturar(v[1], new File(carpeta, "ej4_1_B_tras_agregar_en_A.png"));
+                escribir(v[1], "txtProducto", "Mouse");
+                escribir(v[1], "txtCantidadVenta", "4");
+                presionar(v[1], "btnVender");
+                capturar(v[0], new File(carpeta, "ej4_2_A_tras_vender_en_B.png"));
+                capturar(v[1], new File(carpeta, "ej4_2_B_tras_vender_en_B.png"));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // La consola corre en este hilo con un guion de entrada, como si alguien escribiera.
+        java.io.ByteArrayOutputStream salida = new java.io.ByteArrayOutputStream();
+        java.io.PrintStream out = new java.io.PrintStream(salida, true, "UTF-8");
+        String guion = "3\n1\nMonitor\n2\n3500\n0\n";
+        vista.VistaConsola consola = new vista.VistaConsola(
+                new java.io.ByteArrayInputStream(guion.getBytes("UTF-8")), out);
+        controlador.ControladorConsola cc = new controlador.ControladorConsola(
+                new controlador.ControladorInventario(inventario, consola), consola);
+        cc.activarAvisos();
+        cc.iniciar();
+        SwingUtilities.invokeAndWait(() -> { });   // espera a que Swing procese los avisos
+        SwingUtilities.invokeAndWait(() -> {
+            try {
+                capturar(v[0], new File(carpeta, "ej4_3_A_tras_agregar_en_consola.png"));
+                capturar(v[1], new File(carpeta, "ej4_3_B_tras_agregar_en_consola.png"));
+                v[0].dispose();
+                v[1].dispose();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        java.nio.file.Files.writeString(new File(carpeta, "ej4_consola.txt").toPath(), salida.toString("UTF-8"));
+        System.out.println("Consola: " + new File(carpeta, "ej4_consola.txt").getPath());
     }
 
     static void agregar(VistaSwing v, String n, String c, String p) {

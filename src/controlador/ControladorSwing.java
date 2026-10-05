@@ -2,6 +2,8 @@ package controlador;
 
 import java.nio.file.Path;
 
+import javax.swing.SwingUtilities;
+
 import modelo.Inventario;
 import vista.VistaCSV;
 import vista.VistaSwing;
@@ -24,6 +26,14 @@ public class ControladorSwing {
         vista.alVender(e -> vender());
         vista.alValorTotal(e -> casos.valorTotal());
         vista.alExportar(e -> exportar(vista.pedirArchivoDestino()));
+        // Ejercicio 4: la ventana se entera de cualquier cambio del modelo, venga de donde venga.
+        casos.suscribir(() -> {
+            if (SwingUtilities.isEventDispatchThread()) {
+                refrescar();
+            } else {
+                SwingUtilities.invokeLater(this::refrescar);
+            }
+        });
     }
 
     public void iniciar() {
@@ -40,7 +50,6 @@ public class ControladorSwing {
         } catch (NumberFormatException e) {
             vista.mostrarDatosInvalidos();
         }
-        refrescar();
     }
 
     private void vender() {
@@ -50,7 +59,6 @@ public class ControladorSwing {
         } catch (NumberFormatException e) {
             vista.mostrarDatosInvalidos();
         }
-        refrescar();
     }
 
     /** Reutiliza el mismo caso de uso "listar" con otra vista: la de CSV. */

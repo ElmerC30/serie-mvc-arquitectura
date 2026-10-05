@@ -46,6 +46,9 @@ public class VistaConsola implements VistaInventario {
         out.println(mensaje);
     }
 
+    /** Encabezado que la consola muestra cuando el modelo avisa de un cambio (Ejercicio 4). */
+    public void mostrarAvisoCambio()       { mostrarMensaje("\n[Aviso] El inventario cambio:"); }
+
     @Override
     public void mostrarDatosInvalidos()    { mostrarMensaje("Datos invalidos"); }
     @Override

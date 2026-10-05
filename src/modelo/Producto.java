@@ -6,7 +6,7 @@ package modelo;
  */
 public class Producto {
     private final String nombre;
-    private int cantidad;
+    private volatile int cantidad;
     private final double precio;
 
     public Producto(String nombre, int cantidad, double precio) {

@@ -18,6 +18,9 @@ GUIONES = {
     "fin_de_entrada": "3\n",
 }
 
+subprocess.run(["javac", "-encoding", "UTF-8", "-d", str(RAIZ / "out" / "ej0"),
+                str(RAIZ / "ejercicio0" / "SistemaInventario.java")], check=True)
+
 def ejecutar(cmd, entrada):
     r = subprocess.run(cmd, input=entrada.encode(), capture_output=True)
     err = r.stderr.decode(errors="replace").strip().splitlines()

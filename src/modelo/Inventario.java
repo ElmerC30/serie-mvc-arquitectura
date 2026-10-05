@@ -3,29 +3,49 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Estado del inventario y reglas de negocio.
- * No imprime ni lee nada: rechaza las operaciones invalidas con excepciones propias.
+ * No imprime ni lee nada: rechaza las operaciones invalidas con excepciones propias
+ * y avisa a sus observadores cuando su estado cambia.
  */
 public class Inventario {
     private final List<Producto> productos = new ArrayList<>();
+    private final List<ObservadorInventario> observadores = new CopyOnWriteArrayList<>();
+
+    public void agregarObservador(ObservadorInventario o) {
+        observadores.add(o);
+    }
+
+    public void quitarObservador(ObservadorInventario o) {
+        observadores.remove(o);
+    }
+
+    private void notificar() {
+        for (ObservadorInventario o : observadores) {
+            o.inventarioCambiado();
+        }
+    }
 
     /** Regla: el nombre no puede ir vacio, la cantidad no puede ser negativa y el precio debe ser positivo. */
     public void agregar(Producto p) throws DatosInvalidosException {
-        if (p == null) {
-            throw new DatosInvalidosException("El producto no puede ser nulo");
+        synchronized (this) {
+            if (p == null) {
+                throw new DatosInvalidosException("El producto no puede ser nulo");
+            }
+            if (p.getNombre() == null || p.getNombre().isEmpty()) {
+                throw new DatosInvalidosException("El nombre no puede ir vacio");
+            }
+            if (p.getCantidad() < 0) {
+                throw new DatosInvalidosException("La cantidad no puede ser negativa");
+            }
+            if (p.getPrecio() <= 0) {
+                throw new DatosInvalidosException("El precio debe ser mayor que cero");
+            }
+            productos.add(p);
         }
-        if (p.getNombre() == null || p.getNombre().isEmpty()) {
-            throw new DatosInvalidosException("El nombre no puede ir vacio");
-        }
-        if (p.getCantidad() < 0) {
-            throw new DatosInvalidosException("La cantidad no puede ser negativa");
-        }
-        if (p.getPrecio() <= 0) {
-            throw new DatosInvalidosException("El precio debe ser mayor que cero");
-        }
-        productos.add(p);
+        notificar();
     }
 
     /**
@@ -34,16 +54,21 @@ public class Inventario {
      */
     public int vender(String nombre, int cantidad)
             throws ProductoNoEncontradoException, StockInsuficienteException {
-        Producto p = buscar(nombre);
-        if (cantidad > p.getCantidad()) {
-            throw new StockInsuficienteException(nombre, p.getCantidad(), cantidad);
+        int quedan;
+        synchronized (this) {
+            Producto p = buscar(nombre);
+            if (cantidad > p.getCantidad()) {
+                throw new StockInsuficienteException(nombre, p.getCantidad(), cantidad);
+            }
+            p.setCantidad(p.getCantidad() - cantidad);
+            quedan = p.getCantidad();
         }
-        p.setCantidad(p.getCantidad() - cantidad);
-        return p.getCantidad();
+        notificar();
+        return quedan;
     }
 
     /** Devuelve el primer producto con ese nombre o lanza excepcion si no existe. */
-    public Producto buscar(String nombre) throws ProductoNoEncontradoException {
+    public synchronized Producto buscar(String nombre) throws ProductoNoEncontradoException {
         for (Producto p : productos) {
             if (p.getNombre().equals(nombre)) {
                 return p;
@@ -52,7 +77,7 @@ public class Inventario {
         throw new ProductoNoEncontradoException(nombre);
     }
 
-    public boolean existe(String nombre) {
+    public synchronized boolean existe(String nombre) {
         for (Producto p : productos) {
             if (p.getNombre().equals(nombre)) {
                 return true;
@@ -61,13 +86,13 @@ public class Inventario {
         return false;
     }
 
-    /** Vista de solo lectura de los productos, en orden de alta. */
-    public List<Producto> getProductos() {
-        return Collections.unmodifiableList(productos);
+    /** Copia de solo lectura de los productos, en orden de alta (segura entre hilos). */
+    public synchronized List<Producto> getProductos() {
+        return Collections.unmodifiableList(new ArrayList<>(productos));
     }
 
     /** Suma de cantidad x precio de todos los productos. */
-    public double valorTotal() {
+    public synchronized double valorTotal() {
         double total = 0;
         for (Producto p : productos) {
             total += p.getCantidad() * p.getPrecio();

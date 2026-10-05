@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.DatosInvalidosException;
 import modelo.Inventario;
+import modelo.ObservadorInventario;
 import modelo.Producto;
 import modelo.ProductoNoEncontradoException;
 import modelo.StockInsuficienteException;
@@ -19,6 +20,11 @@ public class ControladorInventario {
     public ControladorInventario(Inventario inventario, VistaInventario vista) {
         this.inventario = inventario;
         this.vista = vista;
+    }
+
+    /** Registra a quien deba enterarse de los cambios del modelo (Ejercicio 4). */
+    public void suscribir(ObservadorInventario observador) {
+        inventario.agregarObservador(observador);
     }
 
     public boolean existe(String nombre) {
