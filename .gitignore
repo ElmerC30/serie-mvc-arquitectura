@@ -1,3 +1,6 @@
 out/
 *.class
 inventario.csv
+ejercicio8/out/
+ejercicio8/datos/
+*.tmp

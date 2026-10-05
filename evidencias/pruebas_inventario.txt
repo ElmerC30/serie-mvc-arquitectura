@@ -1,0 +1,31 @@
+[VERDE] Ej4: las operaciones rechazadas no notifican
+[VERDE] Ej4: ningun archivo del paquete modelo menciona clases de vista o controlador
+[VERDE] Ej4: agregar y vender notifican a todos los observadores registrados
+[VERDE] Ej4: el observador ve el estado ya actualizado y puede darse de baja
+[VERDE] Ej5 req.2: no se aceptan mas de 50000 unidades; 50000 exactas si
+[VERDE] Ej5 req.5: un producto con menos de 10 unidades es critico; con 10 no
+[VERDE] Ej5 req.5: un producto se vuelve critico al venderse por debajo del umbral
+[VERDE] Caso 2: vender una cantidad valida descuenta exactamente esa cantidad
+[VERDE] Caso 3b: agregar un producto con precio negativo se rechaza
+[VERDE] Caso 3: agregar un producto con precio cero se rechaza
+[VERDE] Caso 5b: vender un producto inexistente lanza ProductoNoEncontradoException
+[VERDE] Caso 3c: nombre vacio o cantidad negativa tambien se rechazan
+[VERDE] Caso 4: el valor total se calcula correctamente con varios productos
+[VERDE] Caso 5: buscar un producto inexistente lanza ProductoNoEncontradoException
+[VERDE] La lista de productos expuesta no se puede modificar desde fuera del modelo
+[VERDE] Caso 4b: el valor total refleja las ventas
+[VERDE] Caso 2b: vender exactamente todo el stock lo deja en cero
+[VERDE] Caso 4c: inventario vacio vale cero
+[VERDE] Caso 1: vender mas de lo disponible lanza excepcion y deja el stock intacto
+[VERDE] CSV: exportar desde Swing reutiliza el caso de uso listar con la vista CSV
+[VERDE] Ej5 req.6: la vista pinta de rojo solo las filas que el modelo considera criticas
+[VERDE] Swing: vender mas del stock muestra 'Stock insuficiente' y no cambia el modelo
+[VERDE] Swing: agregar desde la ventana llena la tabla y actualiza el modelo
+[VERDE] Swing: texto no numerico se informa como datos invalidos sin cerrar el programa
+[VERDE] Ej6: las reglas del inventario funcionan con el DAO en memoria
+[VERDE] Ej6: el DAO en memoria empieza vacio en cada ejecucion
+[VERDE] Ej6: las reglas del inventario funcionan con el DAO de archivo
+[VERDE] Ej6: el DAO de archivo conserva los datos entre ejecuciones (incluye comas en el nombre)
+
+Pruebas encontradas: 28 | exitosas: 28 | fallidas: 0
+RESULTADO: TODO EN VERDE

@@ -1,0 +1,35 @@
+﻿[OK]    Reabastecer con cero o negativo se rechaza
+[OK]    Las boquillas usan su propio umbral: 1 unidad (< 2) ya requiere reabasto
+[OK]    Reabastecer por encima del mínimo retira la alerta y avisa a los observadores
+[OK]    Vender cañas de alto hasta dejar 19 dispara la alerta; con 20 todavía no
+[OK]    Al iniciar, sólo las cañas de tenor (18 < 20) están en alerta
+[OK]    Un saxofón sólo entra en alerta cuando se agota
+[OK]    Líneas repetidas del mismo artículo se suman al validar el stock
+[OK]    Registrar un artículo con precio cero, nombre vacío o código repetido se rechaza
+[OK]    Vender más de lo disponible lanza excepción y deja el stock intacto
+[OK]    Una venta válida descuenta exactamente lo vendido y notifica una vez
+[OK]    Pedido vacío, cantidad cero o código inexistente se rechazan
+[OK]    Dos saxofones duplican el cupo: 2 boquillas con descuento, la tercera no
+[OK]    Sólo las primeras 10 cañas por saxofón llevan descuento
+[OK]    Cotizar no modifica el stock; vender sí
+[OK]    El saxofón nunca lleva descuento
+[OK]    El cupo se reparte entre líneas repetidas del mismo artículo
+[OK]    Accesorios comprados sin saxofón pagan precio completo
+[OK]    Kit completo: saxofón + boquilla + 10 cañas llevan descuento en los accesorios
+[OK]    Saxofón alto con boquilla y cañas de alto: se acepta
+[OK]    Saxofón tenor con cañas de alto: se rechaza
+[OK]    Accesorios sueltos (sin saxofón) se venden como refacción de cualquier familia
+[OK]    Si el pedido trae un alto y un tenor, cada accesorio puede ser de cualquiera de los dos
+[OK]    Un pedido incompatible no descuenta stock de ninguna línea (venta atómica)
+[OK]    Saxofón alto con boquilla de tenor: se rechaza
+[OK]    La Tienda vende igual sin importar la implementación
+[OK]    Inserta, lista en orden de alta y busca por código
+[OK]    Los cambios sobreviven a reabrir el archivo (incluye nombres con apóstrofo)
+[OK]    La Tienda vende igual sin importar la implementación
+[OK]    Inserta, lista en orden de alta y busca por código
+[OK]    El controlador no agrega al pedido una línea que el modelo rechaza
+[OK]    Una venta en el mostrador actualiza el almacén y su lista de alertas
+[OK]    Texto no numérico en cantidad se informa sin llegar al modelo
+[OK]    Un reabasto en el almacén actualiza el stock que ve el mostrador
+
+Pruebas: 33 | exitosas: 33 | fallidas: 0

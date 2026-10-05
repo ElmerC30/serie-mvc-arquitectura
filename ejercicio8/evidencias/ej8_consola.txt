@@ -1,0 +1,167 @@
+Hoy es 04/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Disponible -                -
+L02    Pedro Paramo                 Juan Rulfo           Disponible -                -
+L03    Design Patterns              Gamma et al.         Disponible -                -
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    0 $0.00        si
+S02    Luis Perez                   0 $0.00        si
+
+1) Registrar libro  2) Registrar socio  3) Prestar  4) Devolver  5) Pagar multa
+6) Ver libros  7) Ver socios  8) Avanzar dias  0) Salir
+Opcion: ISBN: Id de socio: 
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 04/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Disponible -                -
+L03    Design Patterns              Gamma et al.         Disponible -                -
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    1 $0.00        si
+S02    Luis Perez                   0 $0.00        si
+OK: Prestado. Debe devolverse a mas tardar el 11/10/2026
+
+1) Registrar libro  2) Registrar socio  3) Prestar  4) Devolver  5) Pagar multa
+6) Ver libros  7) Ver socios  8) Avanzar dias  0) Salir
+Opcion: ISBN: Id de socio: 
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 04/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Disponible -                -
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   0 $0.00        si
+OK: Prestado. Debe devolverse a mas tardar el 11/10/2026
+
+1) Registrar libro  2) Registrar socio  3) Prestar  4) Devolver  5) Pagar multa
+6) Ver libros  7) Ver socios  8) Avanzar dias  0) Salir
+Opcion: ISBN: Id de socio: 
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 04/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+OK: Prestado. Debe devolverse a mas tardar el 11/10/2026
+
+1) Registrar libro  2) Registrar socio  3) Prestar  4) Devolver  5) Pagar multa
+6) Ver libros  7) Ver socios  8) Avanzar dias  0) Salir
+Opcion: 
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 05/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 06/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 07/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 08/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 09/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 10/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 11/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Prestado   Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           Prestado   Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         Prestado   Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 12/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    VENCIDO    Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           VENCIDO    Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         VENCIDO    Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 13/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    VENCIDO    Ana Lopez        11/10/2026
+L02    Pedro Paramo                 Juan Rulfo           VENCIDO    Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         VENCIDO    Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    2 $0.00        si
+S02    Luis Perez                   1 $0.00        si
+
+[Aviso] La biblioteca cambio (desde esta u otra vista):
+Hoy es 13/10/2026
+ISBN   Titulo                       Autor                Estado     Socio            Vence
+L01    Cien anios de soledad        G. Garcia Marquez    Disponible -                -
+L02    Pedro Paramo                 Juan Rulfo           VENCIDO    Luis Perez       11/10/2026
+L03    Design Patterns              Gamma et al.         VENCIDO    Ana Lopez        11/10/2026
+L04    Clean Architecture           Robert C. Martin     Disponible -                -
+Id     Nombre               Prestamos Multa        Puede pedir
+S01    Ana Lopez                    1 $10.00       no
+S02    Luis Perez                   1 $0.00        si

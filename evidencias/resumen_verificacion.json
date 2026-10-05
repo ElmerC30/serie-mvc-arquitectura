@@ -1,0 +1,62 @@
+[
+  {
+    "ejercicio": 0,
+    "esperado": "El codigo original compila y se ejecuta",
+    "obtenido": "compila y corre; muestra 'Stock insuficiente'",
+    "ok": true
+  },
+  {
+    "ejercicio": 1,
+    "esperado": "Quien lo ejecute ve exactamente lo mismo que antes",
+    "obtenido": "salida identica byte a byte en 9 guiones de prueba",
+    "ok": true
+  },
+  {
+    "ejercicio": 1,
+    "esperado": "El paquete modelo no contiene System.out/Scanner/javax.swing ni importa vista/controlador",
+    "obtenido": "0 coincidencias prohibidas en src/modelo",
+    "ok": true
+  },
+  {
+    "ejercicio": 2,
+    "esperado": "Pruebas del modelo en verde sin menu ni espera de tecla",
+    "obtenido": "28 pruebas, 28 exitosas, 0 fallidas (stdin vacio)",
+    "ok": true
+  },
+  {
+    "ejercicio": 3,
+    "esperado": "git diff del paquete modelo entre Ej1/Ej2 y Ej3 vacio",
+    "obtenido": "git diff ej1..ej3 = 0 bytes, ej2..ej3 = 0 bytes",
+    "ok": true
+  },
+  {
+    "ejercicio": 4,
+    "esperado": "El modelo notifica sin nombrar ninguna clase de vista",
+    "obtenido": "ninguna mencion a Vista/Controlador/Swing en src/modelo",
+    "ok": true
+  },
+  {
+    "ejercicio": 6,
+    "esperado": "Alternar memoria/archivo cambiando una sola linea; vistas y controlador sin cambios",
+    "obtenido": "vistas/controlador sin cambios (0 bytes de diff); una linea cambiada, ambas implementaciones corren y el archivo persiste",
+    "ok": true
+  },
+  {
+    "ejercicio": 8,
+    "esperado": "Reglas de negocio cubiertas por pruebas; dos vistas sincronizadas",
+    "obtenido": "23 pruebas, 23 exitosas, 0 fallidas",
+    "ok": true
+  },
+  {
+    "ejercicio": 8,
+    "esperado": "Persistencia intercambiable detras de una interfaz",
+    "obtenido": "1 linea cambiada; el prestamo de la 1a ejecucion aparece en la 2a: True",
+    "ok": true
+  },
+  {
+    "ejercicio": "1/3/6/8",
+    "esperado": "Diagramas .mdj validos; ninguna dependencia sale del modelo",
+    "obtenido": "4 archivos validos; salen del modelo: ninguna",
+    "ok": true
+  }
+]

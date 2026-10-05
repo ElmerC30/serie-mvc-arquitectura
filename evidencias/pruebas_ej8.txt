@@ -1,0 +1,26 @@
+[VERDE] Altas: ISBN repetido, titulo vacio o socio repetido se rechazan
+[VERDE] Observadores: solo los cambios exitosos notifican
+[VERDE] R4: pagos de cero, negativos o mayores a la deuda se rechazan
+[VERDE] R4: un pago parcial no basta; el pago total si lo habilita
+[VERDE] R4: con multa pendiente el prestamo se rechaza
+[VERDE] R3: calculo puro de la multa en los limites
+[VERDE] R3: devolver 3 dias tarde genera $15 y se acumula en el socio
+[VERDE] R3: devolver dentro del plazo (dia 7) no genera multa
+[VERDE] R3: devolver un libro que no esta prestado se rechaza
+[VERDE] R3: el prestamo aparece como vencido despues de la fecha limite
+[VERDE] R2: tras devolverlo, el libro vuelve a estar disponible
+[VERDE] R2: prestar un libro ya prestado lanza LibroNoDisponibleException
+[VERDE] R1: al devolver uno, el socio puede volver a pedir
+[VERDE] R1: el limite es por socio, no global
+[VERDE] R1: el cuarto prestamo se rechaza y no se registra
+[VERDE] Persistencia: las reglas funcionan igual con RepositorioArchivo
+[VERDE] Persistencia: RepositorioArchivo conserva libros, socios, multas y prestamos al reabrir
+[VERDE] Persistencia: las reglas funcionan igual con RepositorioMemoria
+[VERDE] Dos vistas: la ventana refleja un prestamo hecho en la consola y la consola una devolucion hecha en la ventana
+[VERDE] Controlador: la violacion de una regla del modelo llega a la vista como error
+[VERDE] Controlador: refrescar entrega a la vista el estado calculado por el modelo
+[VERDE] Controlador: un monto no numerico se informa como error sin llegar al modelo
+[VERDE] Controlador: avanzar dias y devolver tarde informa la multa con formato de dinero
+
+Pruebas encontradas: 23 | exitosas: 23 | fallidas: 0
+RESULTADO: TODO EN VERDE

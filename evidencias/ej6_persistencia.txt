@@ -1,0 +1,35 @@
+$ git diff --stat ej5 ej6 -- src/vista src/controlador
+(vacio: vistas y controladores no cambiaron)
+
+Lineas de App.java que cambian para usar archivo:
+  -        ProductoDAO dao = new ProductoDAOMemoria(); // DAO
+  +        ProductoDAO dao = new ProductoDAOArchivo(Paths.get("inventario.csv")); // DAO
+
+Primera ejecucion (alta + venta): salida memoria == salida archivo -> True
+
+Segunda ejecucion solo consulta (3 y 4) con MEMORIA:
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: 
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: Valor del inventario: $0.0
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: 
+Segunda ejecucion solo consulta (3 y 4) con ARCHIVO:
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: Teclado            5  $350.00
+Mouse              6  $199.99
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: Valor del inventario: $2949.94
+
+1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir
+Opcion: 
+Contenido de inventario.csv:
+nombre,cantidad,precio
+Teclado,5,350.0
+Mouse,6,199.99
+
+RESULTADO: OK - ambas implementaciones corren cambiando una sola linea
