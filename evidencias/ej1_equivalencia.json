@@ -1,0 +1,69 @@
+{
+  "todo_ok": true,
+  "resultados": [
+    {
+      "guion": "alta_y_listado",
+      "identico": true,
+      "bytes_stdout": 512,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "datos_invalidos",
+      "identico": true,
+      "bytes_stdout": 586,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "venta_ok_insuficiente_inexistente",
+      "identico": true,
+      "bytes_stdout": 700,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "venta_cero_y_exacta",
+      "identico": true,
+      "bytes_stdout": 607,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "nombres_duplicados",
+      "identico": true,
+      "bytes_stdout": 624,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "opcion_desconocida",
+      "identico": true,
+      "bytes_stdout": 373,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "decimales_largos",
+      "identico": true,
+      "bytes_stdout": 520,
+      "exit": 0,
+      "excepcion": ""
+    },
+    {
+      "guion": "entrada_no_numerica",
+      "identico": true,
+      "bytes_stdout": 87,
+      "exit": 1,
+      "excepcion": "java.lang.NumberFormatException"
+    },
+    {
+      "guion": "fin_de_entrada",
+      "identico": true,
+      "bytes_stdout": 138,
+      "exit": 1,
+      "excepcion": "java.util.NoSuchElementException"
+    }
+  ],
+  "ejemplo_salida": "\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: Nombre: Cantidad: Precio: Agregado.\r\n\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: Producto: Cantidad a vender: Venta ok. Quedan 2\r\n\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: Producto: Cantidad a vender: Stock insuficiente\r\n\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: Producto: No existe\r\n\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: Teclado            2  $350.00\r\n\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: Valor del inventario: $700.0\r\n\n1) Agregar  2) Vender  3) Listar  4) Valor total  0) Salir\r\nOpcion: "
+}
