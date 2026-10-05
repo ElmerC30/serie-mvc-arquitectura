@@ -15,9 +15,12 @@ import org.junit.platform.launcher.listeners.TestExecutionSummary;
 /** Lanzador minimo de JUnit 5 (no hay Maven/Gradle): ejecuta todas las pruebas del paquete modelo. */
 public class RunTests {
     public static void main(String[] args) {
-        String paquete = args.length > 0 ? args[0] : "modelo";
-        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
-                .selectors(selectPackage(paquete)).build();
+        String[] paquetes = args.length > 0 ? args : new String[] {"modelo"};
+        LauncherDiscoveryRequestBuilder builder = LauncherDiscoveryRequestBuilder.request();
+        for (String paquete : paquetes) {
+            builder.selectors(selectPackage(paquete));
+        }
+        LauncherDiscoveryRequest request = builder.build();
         Launcher launcher = LauncherFactory.create();
         SummaryGeneratingListener resumen = new SummaryGeneratingListener();
         TestExecutionListener detalle = new TestExecutionListener() {

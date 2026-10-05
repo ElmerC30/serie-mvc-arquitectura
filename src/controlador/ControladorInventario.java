@@ -5,41 +5,27 @@ import modelo.Inventario;
 import modelo.Producto;
 import modelo.ProductoNoEncontradoException;
 import modelo.StockInsuficienteException;
-import vista.VistaConsola;
+import vista.VistaInventario;
 
 /**
- * Controlador: interpreta la entrada que captura la vista, invoca al modelo
- * y decide que debe mostrar la vista segun el resultado.
+ * Casos de uso del inventario, independientes de la tecnologia de la vista.
+ * Invoca al modelo y decide que debe mostrar la vista segun el resultado.
+ * Lo reutilizan el controlador de consola y el de Swing.
  */
 public class ControladorInventario {
     private final Inventario inventario;
-    private final VistaConsola vista;
+    private final VistaInventario vista;
 
-    public ControladorInventario(Inventario inventario, VistaConsola vista) {
+    public ControladorInventario(Inventario inventario, VistaInventario vista) {
         this.inventario = inventario;
         this.vista = vista;
     }
 
-    /** Ciclo principal del menu. */
-    public void iniciar() {
-        int op;
-        do {
-            vista.mostrarMenu();
-            op = Integer.parseInt(vista.pedirOpcion());
-            switch (op) {
-                case 1: agregar(); break;
-                case 2: vender(); break;
-                case 3: listar(); break;
-                case 4: valorTotal(); break;
-                default: break;
-            }
-        } while (op != 0);
+    public boolean existe(String nombre) {
+        return inventario.existe(nombre);
     }
 
-    private void agregar() {
-        String nombre = vista.pedirNombre();
-        int cantidad = Integer.parseInt(vista.pedirCantidad());
-        double precio = Double.parseDouble(vista.pedirPrecio());
+    public void agregar(String nombre, int cantidad, double precio) {
         try {
             inventario.agregar(new Producto(nombre, cantidad, precio));
             vista.mostrarAgregado();
@@ -48,13 +34,7 @@ public class ControladorInventario {
         }
     }
 
-    private void vender() {
-        String nombre = vista.pedirProducto();
-        if (!inventario.existe(nombre)) {
-            vista.mostrarNoExiste();
-            return;
-        }
-        int cantidad = Integer.parseInt(vista.pedirCantidadAVender());
+    public void vender(String nombre, int cantidad) {
         try {
             int quedan = inventario.vender(nombre, cantidad);
             vista.mostrarVentaOk(quedan);
@@ -65,11 +45,11 @@ public class ControladorInventario {
         }
     }
 
-    private void listar() {
+    public void listar() {
         vista.mostrarListado(inventario.getProductos());
     }
 
-    private void valorTotal() {
+    public void valorTotal() {
         vista.mostrarValorTotal(inventario.valorTotal());
     }
 }

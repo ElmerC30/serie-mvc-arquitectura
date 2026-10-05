@@ -1,0 +1,14 @@
+$ git diff ej1 ej3 -- src/modelo
+$ git diff ej2 ej3 -- src/modelo
+(salida vacia: 0 bytes)
+
+$ git diff --stat ej2 ej3 -- src
+ src/App.java                               |  30 +++++-
+ src/controlador/ControladorConsola.java    |  50 +++++++++
+ src/controlador/ControladorInventario.java |  44 +++-----
+ src/controlador/ControladorSwing.java      |  69 +++++++++++++
+ src/vista/VistaCSV.java                    |  71 +++++++++++++
+ src/vista/VistaConsola.java                |  10 +-
+ src/vista/VistaInventario.java             |  21 ++++
+ src/vista/VistaSwing.java                  | 160 +++++++++++++++++++++++++++++
+ 8 files changed, 419 insertions(+), 36 deletions(-)

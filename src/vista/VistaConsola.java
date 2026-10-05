@@ -11,7 +11,7 @@ import modelo.Producto;
  * Vista de consola: muestra menus, mensajes y datos, y captura la entrada del usuario.
  * No toma decisiones: lo que se lee se entrega tal cual al controlador.
  */
-public class VistaConsola {
+public class VistaConsola implements VistaInventario {
     private final Scanner sc;
     private final PrintStream out;
 
@@ -41,26 +41,34 @@ public class VistaConsola {
     public String pedirProducto()          { return pedir("Producto"); }
     public String pedirCantidadAVender()   { return pedir("Cantidad a vender"); }
 
+    @Override
     public void mostrarMensaje(String mensaje) {
         out.println(mensaje);
     }
 
+    @Override
     public void mostrarDatosInvalidos()    { mostrarMensaje("Datos invalidos"); }
+    @Override
     public void mostrarAgregado()          { mostrarMensaje("Agregado."); }
+    @Override
     public void mostrarNoExiste()          { mostrarMensaje("No existe"); }
+    @Override
     public void mostrarStockInsuficiente() { mostrarMensaje("Stock insuficiente"); }
 
+    @Override
     public void mostrarVentaOk(int quedan) {
         mostrarMensaje("Venta ok. Quedan " + quedan);
     }
 
     /** Decision de formato (dos decimales, columnas) que pertenece a la vista. */
+    @Override
     public void mostrarListado(List<Producto> productos) {
         for (Producto p : productos) {
             out.printf("%-15s %4d  $%.2f%n", p.getNombre(), p.getCantidad(), p.getPrecio());
         }
     }
 
+    @Override
     public void mostrarValorTotal(double total) {
         out.println("Valor del inventario: $" + total);
     }
