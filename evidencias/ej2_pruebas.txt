@@ -1,0 +1,15 @@
+[VERDE] Caso 2: vender una cantidad valida descuenta exactamente esa cantidad
+[VERDE] Caso 3b: agregar un producto con precio negativo se rechaza
+[VERDE] Caso 3: agregar un producto con precio cero se rechaza
+[VERDE] Caso 5b: vender un producto inexistente lanza ProductoNoEncontradoException
+[VERDE] Caso 3c: nombre vacio o cantidad negativa tambien se rechazan
+[VERDE] Caso 4: el valor total se calcula correctamente con varios productos
+[VERDE] Caso 5: buscar un producto inexistente lanza ProductoNoEncontradoException
+[VERDE] La lista de productos expuesta no se puede modificar desde fuera del modelo
+[VERDE] Caso 4b: el valor total refleja las ventas
+[VERDE] Caso 2b: vender exactamente todo el stock lo deja en cero
+[VERDE] Caso 4c: inventario vacio vale cero
+[VERDE] Caso 1: vender mas de lo disponible lanza excepcion y deja el stock intacto
+
+Pruebas encontradas: 12 | exitosas: 12 | fallidas: 0
+RESULTADO: TODO EN VERDE
