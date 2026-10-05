@@ -11,6 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * y avisa a sus observadores cuando su estado cambia.
  */
 public class Inventario {
+    /** Regla 2 del Ejercicio 5: capacidad maxima de almacen por producto. */
+    public static final int MAX_UNIDADES = 50000;
+
     private final List<Producto> productos = new ArrayList<>();
     private final List<ObservadorInventario> observadores = new CopyOnWriteArrayList<>();
 
@@ -39,6 +42,9 @@ public class Inventario {
             }
             if (p.getCantidad() < 0) {
                 throw new DatosInvalidosException("La cantidad no puede ser negativa");
+            }
+            if (p.getCantidad() > MAX_UNIDADES) {
+                throw new DatosInvalidosException("No caben mas de " + MAX_UNIDADES + " unidades en almacen");
             }
             if (p.getPrecio() <= 0) {
                 throw new DatosInvalidosException("El precio debe ser mayor que cero");
@@ -89,6 +95,17 @@ public class Inventario {
     /** Copia de solo lectura de los productos, en orden de alta (segura entre hilos). */
     public synchronized List<Producto> getProductos() {
         return Collections.unmodifiableList(new ArrayList<>(productos));
+    }
+
+    /** Productos con stock critico (Ejercicio 5, requisito 5). */
+    public synchronized List<Producto> getCriticos() {
+        List<Producto> criticos = new ArrayList<>();
+        for (Producto p : productos) {
+            if (p.esCritico()) {
+                criticos.add(p);
+            }
+        }
+        return Collections.unmodifiableList(criticos);
     }
 
     /** Suma de cantidad x precio de todos los productos. */

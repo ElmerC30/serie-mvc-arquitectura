@@ -114,6 +114,28 @@ class ControladorSwingTest {
     }
 
     @Test
+    @DisplayName("Ej5 req.6: la vista pinta de rojo solo las filas que el modelo considera criticas")
+    void filasCriticasEnRojo() throws Exception {
+        escribir("txtNombre", "Mouse");
+        escribir("txtCantidad", "4");
+        escribir("txtPrecio", "199.99");
+        presionar("btnAgregar");
+        escribir("txtNombre", "Teclado");
+        escribir("txtCantidad", "40");
+        escribir("txtPrecio", "350");
+        presionar("btnAgregar");
+
+        JTable tabla = buscar(vista.getContentPane(), "tabla", JTable.class);
+        // El componente del renderer se reutiliza entre celdas: se lee el color justo despues de prepararlo.
+        java.awt.Color colorMouse = tabla.prepareRenderer(tabla.getCellRenderer(0, 0), 0, 0).getForeground();
+        java.awt.Color colorTeclado = tabla.prepareRenderer(tabla.getCellRenderer(1, 0), 1, 0).getForeground();
+        assertTrue(vista.esFilaCritica(0));
+        assertFalse(vista.esFilaCritica(1));
+        assertEquals(VistaSwing.COLOR_CRITICO, colorMouse);
+        assertNotEquals(VistaSwing.COLOR_CRITICO, colorTeclado);
+    }
+
+    @Test
     @DisplayName("Swing: texto no numerico se informa como datos invalidos sin cerrar el programa")
     void entradaNoNumerica() throws Exception {
         escribir("txtNombre", "Hub");

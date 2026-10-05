@@ -2,11 +2,13 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -18,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Producto;
@@ -45,6 +48,9 @@ public class VistaSwing extends JFrame implements VistaInventario {
                 public boolean isCellEditable(int fila, int columna) { return false; }
             };
     private final JTable tabla = new JTable(modeloTabla);
+    /** Que filas son criticas: lo decide el modelo, la vista solo lo recuerda para pintar. */
+    private final List<Boolean> filasCriticas = new ArrayList<>();
+    public static final Color COLOR_CRITICO = new Color(0xC6, 0x28, 0x28);
     private final JLabel lblEstado = new JLabel(" ");
     private final JLabel lblValorTotal = new JLabel("Valor del inventario: -");
 
@@ -56,6 +62,16 @@ public class VistaSwing extends JFrame implements VistaInventario {
         super(titulo);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tabla.setName("tabla");
+        tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable t, Object valor, boolean sel,
+                                                           boolean foco, int fila, int col) {
+                Component c = super.getTableCellRendererComponent(t, valor, sel, foco, fila, col);
+                boolean critico = fila < filasCriticas.size() && filasCriticas.get(fila);
+                c.setForeground(critico ? COLOR_CRITICO : t.getForeground());
+                return c;
+            }
+        });
         lblEstado.setName("lblEstado");
         lblValorTotal.setName("lblValorTotal");
 
@@ -145,12 +161,19 @@ public class VistaSwing extends JFrame implements VistaInventario {
     @Override
     public void mostrarListado(List<Producto> productos) {
         modeloTabla.setRowCount(0);
+        filasCriticas.clear();
         for (Producto p : productos) {
+            filasCriticas.add(p.esCritico());
             modeloTabla.addRow(new Object[] {
                 p.getNombre(), p.getCantidad(),
                 String.format("$%,.2f", p.getPrecio()), String.format("$%,.2f", p.getValor())
             });
         }
+    }
+
+    /** Para pruebas y evidencias: si la fila se pinta como critica. */
+    public boolean esFilaCritica(int fila) {
+        return filasCriticas.get(fila);
     }
 
     @Override

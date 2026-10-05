@@ -23,6 +23,42 @@ public class Evidencias {
     public static void main(String[] args) throws Exception {
         File carpeta = new File(args.length > 0 ? args[0] : "evidencias");
         carpeta.mkdirs();
+        java.util.Set<String> modos = new java.util.HashSet<>(java.util.Arrays.asList(args));
+        if (modos.contains("ej3")) {
+            ej3(carpeta);
+        }
+        if (modos.contains("ej4")) {
+            dosVistas(carpeta);
+        }
+        if (modos.contains("ej5")) {
+            ej5(carpeta);
+        }
+        System.exit(0);
+    }
+
+    /** Ejercicio 5: productos criticos (decision del modelo) pintados de rojo (decision de la vista). */
+    static void ej5(File carpeta) throws Exception {
+        SwingUtilities.invokeAndWait(() -> {
+            try {
+                Inventario inventario = new Inventario();
+                VistaSwing vista = new VistaSwing("Inventario - criticos en rojo");
+                new ControladorSwing(inventario, vista);
+                agregar(vista, "Teclado", "40", "350");
+                agregar(vista, "Mouse", "12", "199.99");
+                agregar(vista, "Cable HDMI", "6", "89.5");
+                agregar(vista, "Monitor", "15", "3500");
+                escribir(vista, "txtProducto", "Mouse");
+                escribir(vista, "txtCantidadVenta", "5");
+                presionar(vista, "btnVender");
+                capturar(vista, new File(carpeta, "ej5_criticos_en_rojo.png"));
+                vista.dispose();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    static void ej3(File carpeta) throws Exception {
         SwingUtilities.invokeAndWait(() -> {
             try {
                 Inventario inventario = new Inventario();
@@ -41,8 +77,6 @@ public class Evidencias {
                 throw new RuntimeException(e);
             }
         });
-        dosVistas(carpeta);
-        System.exit(0);
     }
 
     /**
